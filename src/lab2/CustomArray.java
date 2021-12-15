@@ -1,4 +1,6 @@
 package lab2;
+import lab6.CustomException;
+
 import java.util.Scanner;
 
 public class CustomArray {
@@ -24,7 +26,8 @@ public class CustomArray {
         this.Print();
     }
 
-    private int InputElement(int i, int j) {
+    private int InputElement(int i, int j) throws CustomException {
+        int v = 0;
         i++;
         j++;
         System.out.println("Введите "+i+"x"+j+" элемент");
@@ -32,7 +35,11 @@ public class CustomArray {
             System.out.println("Введите "+i+"x"+j+" элемент");
             this.scanner.next();
         }
-        return this.scanner.nextInt();
+        v = this.scanner.nextInt();
+        if(v < 0) {
+            throw new CustomException("Значение должно быть больше нуля");
+        }
+        return v;
     }
 
     public void Input() {
@@ -40,7 +47,12 @@ public class CustomArray {
         for(int i = 0; i < CustomArray.length.length; i++) {
             this.arr[i] = new int[CustomArray.length[i]];
             for(int j = 0; j < CustomArray.length[i]; j++) {
-                this.arr[i][j] = this.InputElement(i,j);
+                try {
+                    this.arr[i][j] = this.InputElement(i, j);
+                } catch (CustomException e) {
+                    System.out.println(e);
+                    --j;
+                }
             }
         }
     }

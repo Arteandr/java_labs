@@ -1,4 +1,6 @@
 package lab3;
+import lab6.CustomException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,14 +19,16 @@ public class CustomDate {
     }
 
     public void Start() {
-        this.Input();
+        try {
+            this.Input();
+        } catch (CustomException e) {
+            System.out.println(e);
+            this.Start();
+        }
     }
 
     public boolean IsLeap(int year) {
-        if((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0)))
-            return true;
-        else
-            return false;
+        return (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0));
     }
 
 
@@ -80,14 +84,16 @@ public class CustomDate {
         return (day+"."+month+"."+year);
     }
 
-    public void Input() {
-        do {
+    public void Input() throws CustomException {
+
             System.out.println("Введите первую дату: ");
             this.fDate = this.DateInput();
 
             System.out.println("Введите вторую дату: ");
             this.sDate = this.DateInput();
-        } while(this.fDate.equals(this.sDate));
+            if(this.fDate.equals(this.sDate))
+                throw new CustomException("Даты должны отличаться!");
+//        } while(this.fDate.equals(this.sDate));
         try {
             int result = this.Calculate();
             System.out.println("Разница между этими датами: " + result + " дней");

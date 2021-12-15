@@ -1,5 +1,7 @@
 package lab5;
 
+import lab6.CustomException;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -10,15 +12,22 @@ public class CustomString {
     }
 
     public void Start() {
-        this.Input();
+        try {
+            this.Input();
+        } catch (CustomException e){
+            System.out.println(e);
+            this.Start();
+        }
     }
 
-    public void Input() {
+    public void Input() throws CustomException {
         String str = "";
-        do {
+//        do {
             System.out.println("Введите исходную строку: ");
             str = this.scanner.nextLine();
-        }while(str.split(" ").length < 2 || !this.IsValid(str.trim()));
+            if(str.split(" ").length < 2 || !this.IsValid(str.trim()))
+                throw new CustomException("Количество слов должно быть больше двух!");
+//        }while(str.split(" ").length < 2 || !this.IsValid(str.trim()));
         str = this.Sort(str);
         System.out.println("Выходная строка: ");
         System.out.println(str);
