@@ -22,12 +22,11 @@ public class CustomString {
 
     public void Input() throws CustomException {
         String str = "";
-//        do {
-            System.out.println("Введите исходную строку: ");
-            str = this.scanner.nextLine();
-            if(str.split(" ").length < 2 || !this.IsValid(str.trim()))
-                throw new CustomException("Количество слов должно быть больше двух!");
-//        }while(str.split(" ").length < 2 || !this.IsValid(str.trim()));
+        System.out.println("Введите исходную строку: ");
+        str = this.scanner.nextLine();
+        if(str.split(" ").length < 2 || !this.IsValid(str.trim()))
+            throw new CustomException("Количество слов должно быть больше двух!");
+
         str = this.Sort(str);
         System.out.println("Выходная строка: ");
         System.out.println(str);
