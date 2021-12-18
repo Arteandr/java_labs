@@ -25,7 +25,7 @@ public class Store {
         this.f = true;
 
         notifyAll();
-
+        System.out.println(this.a+this.b+this.c);
         int p = (this.a + this.b + this.c) / 2;
         double s = Math.sqrt(p * (p-a) * (p-b) * (p-c));
 

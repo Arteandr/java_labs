@@ -85,15 +85,13 @@ public class CustomDate {
     }
 
     public void Input() throws CustomException {
+        System.out.println("Введите первую дату: ");
+        this.fDate = this.DateInput();
 
-            System.out.println("Введите первую дату: ");
-            this.fDate = this.DateInput();
-
-            System.out.println("Введите вторую дату: ");
-            this.sDate = this.DateInput();
-            if(this.fDate.equals(this.sDate))
-                throw new CustomException("Даты должны отличаться!");
-//        } while(this.fDate.equals(this.sDate));
+        System.out.println("Введите вторую дату: ");
+        this.sDate = this.DateInput();
+        if(this.fDate.equals(this.sDate))
+            throw new CustomException("Даты должны отличаться!");
         try {
             int result = this.Calculate();
             System.out.println("Разница между этими датами: " + result + " дней");

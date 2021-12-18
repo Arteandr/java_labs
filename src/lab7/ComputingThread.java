@@ -14,7 +14,7 @@ public class ComputingThread extends Thread {
                 double volume = store.Calculate();
                 System.out.println("Площадь треугольника равна: " + volume);
 
-                sleep(700);
+                sleep(100);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }

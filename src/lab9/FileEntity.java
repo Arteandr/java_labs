@@ -1,8 +1,6 @@
 package lab9;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 
 public class FileEntity {
     String path;
@@ -26,12 +24,12 @@ public class FileEntity {
             }
 
             if(line.isEmpty()) {
-                System.out.println("Файл пуст");
+                System.out.println("Файл src.txt пуст");
             } else
                 this.WriteResult(line);
 
         } else {
-            System.out.println("Файл несуществует");
+            System.out.println("Файл src.txt несуществует");
             return;
         }
     }
